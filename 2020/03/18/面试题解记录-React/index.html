@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="react 面试题解  1. 连续 3 次 setState 为什么结果回是 1，有什么方法使其能得到 3，为什么 题解：  详见：react 官方文档 setState  由于 setState 不会立即触发更新，会将需要更新的 state 做浅合并，所以连续使用 object in setState 的方式相当于 123456Object.assign(Object.assign(  prev">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题解记录(React)">
+<meta property="og:url" content="http://yoursite.com/2020/03/18/%E9%9D%A2%E8%AF%95%E9%A2%98%E8%A7%A3%E8%AE%B0%E5%BD%95-React/index.html">
+<meta property="og:site_name" content="星河小站">
+<meta property="og:description" content="react 面试题解  1. 连续 3 次 setState 为什么结果回是 1，有什么方法使其能得到 3，为什么 题解：  详见：react 官方文档 setState  由于 setState 不会立即触发更新，会将需要更新的 state 做浅合并，所以连续使用 object in setState 的方式相当于 123456Object.assign(Object.assign(  prev">
+<meta property="og:image" content="https://i.loli.net/2020/03/18/EvKwdnkZQWIM3sp.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/18/fG1zs8CD6iwXAJt.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/18/VAgPpDB5RO8JwrS.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/18/d7r3YqXgvFzwjkh.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/25/nItMo3mFlvcDKXA.png">
+<meta property="article:published_time" content="2020-03-18T00:48:08.000Z">
+<meta property="article:modified_time" content="2020-08-27T03:49:01.133Z">
+<meta property="article:author" content="星河">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/03/18/EvKwdnkZQWIM3sp.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/18/面试题解记录-React/"/>
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  <title>面试题解记录(React) | 星河小站</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">星河小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/%E9%9D%A2%E8%AF%95%E9%A2%98%E8%A7%A3%E8%AE%B0%E5%BD%95-React/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="星河">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星河小站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试题解记录(React)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T08:48:08+08:00">
+                2020-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="react-面试题解"><a href="#react-面试题解" class="headerlink" title="react 面试题解"></a>react 面试题解</h3><br/>
+
+<h4 id="1-连续-3-次-setState-为什么结果回是-1，有什么方法使其能得到-3，为什么"><a href="#1-连续-3-次-setState-为什么结果回是-1，有什么方法使其能得到-3，为什么" class="headerlink" title="1. 连续 3 次 setState 为什么结果回是 1，有什么方法使其能得到 3，为什么"></a>1. 连续 3 次 setState 为什么结果回是 1，有什么方法使其能得到 3，为什么</h4><p><img src="https://i.loli.net/2020/03/18/EvKwdnkZQWIM3sp.png" alt=""></p>
+<p><strong>题解：</strong></p>
+<blockquote>
+<p>详见：<a href="https://reactjs.org/docs/react-component.html#setstate" target="_blank" rel="noopener">react 官方文档 setState</a><br><img src="https://i.loli.net/2020/03/18/fG1zs8CD6iwXAJt.png" alt=""></p>
+</blockquote>
+<p>由于 setState 不会立即触发更新，会将需要更新的 state 做浅合并，所以连续使用 <code>object in setState</code> 的方式相当于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.assign(<span class="built_in">Object</span>.assign(</span><br><span class="line">  previousState,</span><br><span class="line">  &#123; <span class="attr">count</span>: previousState.count + <span class="number">1</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">count</span>: previousState.count + <span class="number">1</span>&#125;,</span><br><span class="line">  ...</span><br><span class="line">))</span><br></pre></td></tr></table></figure>
+
+<p>要想 state 在 re-render 前的计算能使用，需要使用 <code>function in setState</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.setState(<span class="function">(<span class="params">state</span>) =&gt;</span> <span class="keyword">return</span> &#123; <span class="attr">count</span>: state.count + <span class="number">1</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>详见：<a href="https://github.com/sisterAn/blog/issues/26" target="_blank" rel="noopener">深入 setState 机制</a></p>
+</blockquote>
+<p><code>function in setState</code> 中的参数 state 是个瞬间 state，工作机制类似于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[&#123; <span class="attr">count</span>: <span class="number">1</span> &#125;, &#123; <span class="attr">count</span>: <span class="number">1</span> &#125;, &#123; <span class="attr">count</span>: <span class="number">1</span> &#125;].reduce(</span><br><span class="line">  (prevState, props) =&gt; (&#123;</span><br><span class="line">    count: prevState.count + props.count</span><br><span class="line">  &#125;),</span><br><span class="line">  &#123; <span class="attr">count</span>: <span class="number">0</span> &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>最终更新的 state 相当是累加后的产物</p>
+<h6 id="进阶为难：如果我混用上面两种形式会怎样呢"><a href="#进阶为难：如果我混用上面两种形式会怎样呢" class="headerlink" title="进阶为难：如果我混用上面两种形式会怎样呢"></a>进阶为难：如果我混用上面两种形式会怎样呢</h6><p>逐个计算</p>
+<blockquote>
+<p>注意：由于 <code>object in setState</code> 的形式更新取得是 this.state，但是在组件 re-render 前 state 的值是不会更新的<br><img src="https://i.loli.net/2020/03/18/VAgPpDB5RO8JwrS.png" alt=""></p>
+</blockquote>
+<p>(使用 <a href="mailto:react@16.13.0">react@16.13.0</a>)<br><img src="https://i.loli.net/2020/03/18/d7r3YqXgvFzwjkh.png" alt=""><br>先执行 0 + 2 = 2<br>再执行 2 + 1 = 3<br>再执行 0 + 5 = 5<br>最后执行 5 + 1 = 6</p>
+<br />
+
+<h4 id="2-setState-是异步还是同步的，下面代码输出一次是什么"><a href="#2-setState-是异步还是同步的，下面代码输出一次是什么" class="headerlink" title="2. setState 是异步还是同步的，下面代码输出一次是什么"></a>2. setState 是异步还是同步的，下面代码输出一次是什么</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      count: <span class="number">0</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123; <span class="attr">count</span>: <span class="keyword">this</span>.state.count + <span class="number">1</span> &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.count);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.setState(&#123; <span class="attr">count</span>: <span class="keyword">this</span>.state.count + <span class="number">1</span> &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.count);</span><br><span class="line"></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123; <span class="attr">count</span>: <span class="keyword">this</span>.state.count + <span class="number">1</span> &#125;);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.count);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">this</span>.setState(&#123; <span class="attr">count</span>: <span class="keyword">this</span>.state.count + <span class="number">1</span> &#125;);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.state.count);</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>题解</strong><br>react中一般情况，在触发setState时不会直接更新state，而是会先将要更新的state加入 <code>dirtyComponents</code> ，累计之后一次性更新state防止多次渲染降低性能。</p>
+<blockquote>
+<p>详解见 <a href="https://github.com/sisterAn/blog/issues/26" target="_blank" rel="noopener">https://github.com/sisterAn/blog/issues/26</a><br>react state队列更新在源码(ReactUpdates.js)中</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">enqueueUpdate</span>(<span class="params">component</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">if</span> (!batchingStrategy.isBatchingUpdates) &#123;</span><br><span class="line">    batchingStrategy.batchedUpdates(enqueueUpdate, component);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  dirtyComponents.push(component);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>更新方法中有一个 <code>isBatchingUpdates</code> 是否批处理判断，如果不是会直接更新(同步更新)，如果是则会加入到 <code>dirtyComponent</code> 队列中去等待执行(异步更新)，isBatchingUpdates默认为false<br>在由react引发的事件处理(如：onClick等)，调用setState不会同步更新，而是会进入批处理队列中去。通过绕过react进行的事件处理，如(addEventListener，setTimeout/setInterval)则会进行同步更新state。</p>
+</blockquote>
+<p><strong>原因</strong>：经过react处理的事件在setState会将 <code>isBatchingUpdates</code> 更新为 <code>true</code> 进入批处理队列，然后整体更新以减少多次渲染，而非react处理的事件则不会进入批处理队列中去，将直接同步修改state引发重渲染。</p>
+<p><img src="https://i.loli.net/2020/03/25/nItMo3mFlvcDKXA.png" alt=""><br>执行步骤：</p>
+<ol>
+<li>render完后打印0 ‘——-‘，进入componentDidMount中</li>
+<li>在setTimeout外的打印都是0，由于setTimeout外的事件是由react接管，执行异步更新</li>
+<li>异步更新完成后render打印1  ‘——-‘ (<code>object in setState</code>会合并执行，见第一题)</li>
+<li>setTimeout中的setState执行，console打印为2</li>
+<li>由于setTimeout中的state不由react接管，同步更新，render会执行，render打印2 ‘——-‘</li>
+<li>setTimeout中的第2个setState执行，重复4，5步骤，打印结果为3 / 3 ‘——‘</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88/" rel="next" title="数据结构 - 栈">
+                <i class="fa fa-chevron-left"></i> 数据结构 - 栈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/31/%E4%BD%BF%E7%94%A8Node-js%E5%88%9B%E5%BB%BA%E8%84%9A%E6%9C%AC%E5%B7%A5%E5%85%B7/" rel="prev" title="使用Node创建脚本工具，实现father.js按需打包/发布组件库组件">
+                使用Node创建脚本工具，实现father.js按需打包/发布组件库组件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">星河</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#react-面试题解"><span class="nav-text">react 面试题解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-连续-3-次-setState-为什么结果回是-1，有什么方法使其能得到-3，为什么"><span class="nav-text">1. 连续 3 次 setState 为什么结果回是 1，有什么方法使其能得到 3，为什么</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#进阶为难：如果我混用上面两种形式会怎样呢"><span class="nav-text">进阶为难：如果我混用上面两种形式会怎样呢</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-setState-是异步还是同步的，下面代码输出一次是什么"><span class="nav-text">2. setState 是异步还是同步的，下面代码输出一次是什么</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">星河</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
