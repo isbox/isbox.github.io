@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="值数组与其他强类型语言不通，javascript数组可以容纳任何类型的值，如：a &#x3D; [1, &#39;2&#39;, [3], {4: 4}]; 对于声明后的数组即可加入值，无需预设大小 12345var a &#x3D; [];a.length; &#x2F;&#x2F; 0a[0] &#x3D; 1;a[1] &#x3D; 32;a.length; &#x2F;&#x2F; 2  数组通过数字进行索引，但是数组也是对象，也可以包含字符串属性 12345var">
+<meta property="og:type" content="website">
+<meta property="og:title" content="星河小站">
+<meta property="og:url" content="http://yoursite.com/%E3%80%90%E8%AF%BB%E4%B9%A6%E3%80%91(7)%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js(%E4%B8%AD)%20%E2%80%94%20%E5%80%BC.html">
+<meta property="og:site_name" content="星河小站">
+<meta property="og:description" content="值数组与其他强类型语言不通，javascript数组可以容纳任何类型的值，如：a &#x3D; [1, &#39;2&#39;, [3], {4: 4}]; 对于声明后的数组即可加入值，无需预设大小 12345var a &#x3D; [];a.length; &#x2F;&#x2F; 0a[0] &#x3D; 1;a[1] &#x3D; 32;a.length; &#x2F;&#x2F; 2  数组通过数字进行索引，但是数组也是对象，也可以包含字符串属性 12345var">
+<meta property="article:published_time" content="2022-07-06T09:14:53.323Z">
+<meta property="article:modified_time" content="2021-02-27T09:57:58.845Z">
+<meta property="article:author" content="星河">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/【读书】(7)你不知道的js(中) — 值.html"/>
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  <title> | 星河小站</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">星河小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h2 id="值"><a href="#值" class="headerlink" title="值"></a>值</h2><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>与其他强类型语言不通，javascript数组可以容纳任何类型的值，如：<code>a = [1, &#39;2&#39;, [3], {4: 4}];</code></p>
+<p>对于声明后的数组即可加入值，无需预设大小</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line">a.length; <span class="comment">// 0</span></span><br><span class="line">a[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">a[<span class="number">1</span>] = <span class="number">32</span>;</span><br><span class="line">a.length; <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p>数组通过数字进行索引，但是数组也是对象，也可以包含字符串属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line">a[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">a[<span class="string">'ac'</span>] = <span class="number">2</span>;</span><br><span class="line">a[<span class="string">'ac'</span>]; <span class="comment">// 2</span></span><br><span class="line">a.ac; <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p>⚠️注意：如果数组的字符串键能被强转为十进制数，那么它会被当作数字索引处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line">a[<span class="string">'13'</span>] = <span class="number">1</span>;</span><br><span class="line">a.length; <span class="comment">// 14</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="类数组"><a href="#类数组" class="headerlink" title="类数组"></a>类数组</h4><p>一些DOM查询操作会返回DOM元素列表，它们并非真正的数组；另一个是arguments对象（类数组，将函数参数当作列表来访问，es6开始已废止）</p>
+<p>工具函数<code>slice</code>可以用于转换这些非数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> arr = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="comment">// es6 Array.from也能实现同样功能</span></span><br><span class="line">	<span class="comment">// var arr = Array.from(arguments);</span></span><br><span class="line">  arr.push(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>字符串与数组十分相似，它们都是类数组，都有length属性以及indexOf，concat等方法；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'foo'</span>;</span><br><span class="line"><span class="keyword">var</span> b = [<span class="string">'f'</span>, <span class="string">'o'</span>, <span class="string">'o'</span>];</span><br><span class="line">a[<span class="number">0</span>]; <span class="comment">// 'f'</span></span><br><span class="line">b[<span class="number">0</span>]; <span class="comment">// 'f'</span></span><br><span class="line">a.length; <span class="comment">// 3</span></span><br><span class="line">b.length; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在javascript中，字符串是不可变的，而数组是可变。</p>
+</blockquote>
+<p>字符串不可变指<strong>字符串的成员函数不会改变其原始值，而是创建并返回一个新的字符串</strong></p>
+<p>数组的成员函数则都是在其原始值上进行操作</p>
+<h4 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h4><p>javascript只有一种数值类型：number，包括“整数”和带小数点的十进制数；</p>
+<p>其中，“整数”与其它语言不同，<strong>javascript中没有真正意义上的整数</strong>，javascript的整数实际上就是没有小数点的十进制数；</p>
+<p>默认情况下大部分数字都以十进制显示，小数部分最后面0被忽略：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">1.3200</span>;</span><br><span class="line">a; <span class="comment">// 1</span></span><br><span class="line">b; <span class="comment">// 1.32</span></span><br></pre></td></tr></table></figure>
+
+<p>特别大/小的数字默认用指数格式显示，与<code>toExponential</code>函数输出相同：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">5e10</span>;</span><br><span class="line">a; <span class="comment">// 50000000000</span></span><br><span class="line">a.toExponential(); <span class="comment">// 5e+10</span></span><br><span class="line"><span class="keyword">var</span> b = a * a;</span><br><span class="line">b; <span class="comment">// 2.5e+10</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="number">1</span> / a;</span><br><span class="line">c; <span class="comment">// 2e-11</span></span><br></pre></td></tr></table></figure>
+
+<p>由于数字值可以使用Number进行封装，因此数字可以调用Number.prototype中的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1.23</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">12.34</span>;</span><br><span class="line">a.toFixed(<span class="number">1</span>); <span class="comment">// 1.2</span></span><br><span class="line">b.toPrecision(<span class="number">1</span>); <span class="comment">// 1e+1 toPrecision指定有效位数</span></span><br><span class="line">b.toPrecision(<span class="number">2</span>); <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+
+<p>上述操作不仅适用于变量，也适用于数字常量；不过<strong>对于“.”操作符，由于“.”是有效数字字符，会被优先识别为数字的一部分</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.23</span>.toFixed(<span class="number">1</span>); <span class="comment">// '1.2'</span></span><br><span class="line"><span class="comment">// 无效语法</span></span><br><span class="line"><span class="number">12.</span>toFixed(<span class="number">1</span>); <span class="comment">// SyntaxError: Invalid or unexpected token</span></span><br><span class="line"><span class="number">12.</span>.toFixed(<span class="number">1</span>); <span class="comment">// '12.0' 第一个点识别为小数点，第二个才是属性访问运算符</span></span><br><span class="line"><span class="number">12</span> .toFixed(<span class="number">1</span>); <span class="comment">// '12.0' 对于空格隔开的可以正确识别</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>较小数，整数安全范围</strong></p>
+<p>由于javascript遵循IEEE 754规范</p>
+<p>会出现如 0.1 + 0.2 !== 0.3 的情况，具体方案可以参考 <a href="/Users/xh/Documents/markdown/笔记/js精度丢失问题.md">js精度丢失问题</a></p>
+<p><strong>特殊的数字</strong></p>
+<p>如果数学运算的操作数不是数字类型，会返回NaN；</p>
+<p>但是，NaN是不是数字的数字，因为<code>typeof NaN; // number</code></p>
+<p>是唯一一个自反的值<code>NaN === NaN; // false</code>，es6可以使用<code>Object.is</code>来判断相等</p>
+<p>可以使用 window.isNaN / Number.isNaN(es6)，来判断是否为NaN；</p>
+<p><strong>无穷数</strong></p>
+<p>JavaScript 使用有限数字表示法，运算结果有可能溢出，此时结果为 Infinity（ Number.POSITIVE_INfiNITY） 或者 -Infinity（Number.NEGATIVE_ INf iNITY）</p>
+<blockquote>
+<p>在 js 中，0作为被除数也会返回 Infinity</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> / <span class="number">0</span>; <span class="comment">// Infinity</span></span><br><span class="line"><span class="number">-1</span> / <span class="number">0</span>; <span class="comment">// -Infinity</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>0值</strong></p>
+<p>javascript中有一个常规的0值（+0），还有一个 -0，普通加减法不会得到 -0 值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> / <span class="number">-3</span>; <span class="comment">// -0</span></span><br><span class="line"><span class="number">0</span> * <span class="number">-3</span>; <span class="comment">// -0</span></span><br></pre></td></tr></table></figure>
+
+<p>-0 判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isNegaZero</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (<span class="number">0</span> === num) &amp;&amp; (<span class="number">1</span> / num === -<span class="literal">Infinity</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="值和引用"><a href="#值和引用" class="headerlink" title="值和引用"></a>值和引用</h4><p>在许多编程语言中，赋值和参数传递可以通过<strong>值复制</strong>、<strong>引用复制</strong>来完成；</p>
+<p>javascript 引用的指向是值。如果一个值有10个引用，这些引用都只会指向同一个值，相互之间没有引用 / 指向关系；</p>
+<p>javascript对值和引用的赋值 / 传递完全根据<strong>值类型</strong>来决定</p>
+<p><strong>简单值</strong>（总是通过复制来赋值/传递）包括：</p>
+<p><code>null, undefined, 字符串, 数字, 布尔值, symbol</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">a++;</span><br><span class="line">a; <span class="comment">// 2</span></span><br><span class="line">b; <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 值复制 a的改变无b关</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>复合值</strong> — 对象（总是通过<strong>引用复制</strong>的方式来赋值/传递）包括</p>
+<p><code>数组, 封装对象, 函数</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">a.push(<span class="number">4</span>);</span><br><span class="line">a; <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line">b; <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line"><span class="comment">// 值引用复制，都为一个引用</span></span><br><span class="line"></span><br><span class="line">a = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">a; <span class="comment">// [3, 4, 5]</span></span><br><span class="line">b; <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line"><span class="comment">// 重新赋值，引用指向的是值而非变量，a重新赋值不会断开b对原来a的“值”的引用</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的情况在函数中经常会让人困惑</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  arr.push(<span class="number">4</span>);</span><br><span class="line">  <span class="comment">// 然后</span></span><br><span class="line">  arr = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">&#125;</span><br><span class="line">foo(a);</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="comment">// 函数参数值复制了变量 a 的“值”的引用，当重新赋值参数时并不会影响变量 a 的引用指向</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>基本类型是不可修改的</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 虽然函数参数可以修改引用值的属性</span></span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  obj.a = <span class="number">123</span>;</span><br><span class="line">&#125;</span><br><span class="line">bar(obj1);</span><br><span class="line">obj1.a; <span class="comment">// 123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 但是不能通过它来更改其 中的基本类型值，因为 num + 1 中num是从数字对象中拆分出来的（valueOf返回值的类型）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">	num = num + <span class="number">1</span>;</span><br><span class="line">  num; <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>); <span class="comment">// 使用Object(1)也不行</span></span><br><span class="line">foo(a);</span><br><span class="line">a; <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">星河</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#值"><span class="nav-text">值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类数组"><span class="nav-text">类数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串"><span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字"><span class="nav-text">数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#值和引用"><span class="nav-text">值和引用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">星河</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

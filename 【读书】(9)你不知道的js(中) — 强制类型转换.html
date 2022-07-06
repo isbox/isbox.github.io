@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="强制类型转换显式的将值从一种类型转为另外一种类型称为类型转换，如果是隐式的情况则被称为强制类型转换 另一种说法：类型转换发生在静态语言类型的编译阶段，而强制类型转换则是在动态类型语言运行时（runtime） Javascript中都统称为强制类型转换，如果要做区分，分为显式强制类型转换与隐式强制类型转换  JavaScript 中的强制类型转换总是返回标量基本类型值，如 字符串、数字、布尔值，不会">
+<meta property="og:type" content="website">
+<meta property="og:title" content="星河小站">
+<meta property="og:url" content="http://yoursite.com/%E3%80%90%E8%AF%BB%E4%B9%A6%E3%80%91(9)%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js(%E4%B8%AD)%20%E2%80%94%20%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.html">
+<meta property="og:site_name" content="星河小站">
+<meta property="og:description" content="强制类型转换显式的将值从一种类型转为另外一种类型称为类型转换，如果是隐式的情况则被称为强制类型转换 另一种说法：类型转换发生在静态语言类型的编译阶段，而强制类型转换则是在动态类型语言运行时（runtime） Javascript中都统称为强制类型转换，如果要做区分，分为显式强制类型转换与隐式强制类型转换  JavaScript 中的强制类型转换总是返回标量基本类型值，如 字符串、数字、布尔值，不会">
+<meta property="og:image" content="http://yoursite.com/Users/xh/Library/Application%20Support/typora-user-images/image-20210518090830297.png">
+<meta property="og:image" content="http://yoursite.com/Users/xh/Library/Application%20Support/typora-user-images/image-20210623091336206.png">
+<meta property="article:published_time" content="2022-07-06T09:14:53.331Z">
+<meta property="article:modified_time" content="2021-06-28T06:11:38.664Z">
+<meta property="article:author" content="星河">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/Users/xh/Library/Application%20Support/typora-user-images/image-20210518090830297.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/【读书】(9)你不知道的js(中) — 强制类型转换.html"/>
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  <title> | 星河小站</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">星河小站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h2 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h2><p><strong>显式的</strong>将<strong>值</strong>从一种类型转为另外一种类型称为<strong>类型转换</strong>，如果是<strong>隐式</strong>的情况则被称为<strong>强制类型转换</strong></p>
+<p>另一种说法：类型转换发生在<strong>静态语言类型的编译阶段</strong>，而强制类型转换则是在<strong>动态类型语言运行时（runtime）</strong></p>
+<p>Javascript中都统称为强制类型转换，如果要做区分，分为<strong>显式强制类型转换</strong>与<strong>隐式强制类型转换</strong></p>
+<blockquote>
+<p>JavaScript 中的强制类型转换总是返回标量基本类型值，如 <strong>字符串</strong>、<strong>数字</strong>、<strong>布尔值</strong>，不会返回对象和函数</p>
+<p>⚠️<strong>封装</strong>并非严格意义 上的强制类型转换</p>
+</blockquote>
+<h5 id="抽象值操作（仅供内部使用的操作？）"><a href="#抽象值操作（仅供内部使用的操作？）" class="headerlink" title="抽象值操作（仅供内部使用的操作？）"></a>抽象值操作（仅供内部使用的操作？）</h5><p>首先，我们要了解下，字符串、数字、布尔值间的转换规则</p>
+<h6 id="ToString"><a href="#ToString" class="headerlink" title="ToString"></a><strong>ToString</strong></h6><p><code>toString</code> 定义了非字符串到字符串的强制类型转换；</p>
+<p>对于基本类型值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> 				 -&gt; <span class="string">'null'</span>;</span><br><span class="line"><span class="literal">undefined</span>    -&gt; <span class="string">'undefined'</span>;</span><br><span class="line"><span class="literal">true</span> / <span class="literal">false</span> -&gt; <span class="string">'true / false'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对于数字与上面规则类似</span></span><br><span class="line"><span class="number">123</span> 				 -&gt; <span class="string">'123'</span></span><br><span class="line"><span class="comment">// 对于大数 / 小数则</span></span><br><span class="line"><span class="number">1e123</span>				 -&gt; <span class="string">'1e+123'</span></span><br><span class="line"><span class="number">1e-12</span>				 -&gt; <span class="string">'1e-12'</span></span><br></pre></td></tr></table></figure>
+
+<p>对于普通对象，如果有自己的 <code>toString</code> 方法，字符串化时就会调用该方法并 使用其返回值；</p>
+<p>反之，会调用  <code>toString（Object.prototype.toString）</code> 返回内部属性 <code>[[Class]]</code> 的值，如 <code>[object Object]</code>；</p>
+<p>数组拥有自己的 <code>toString</code> 方法，会将所有单元字符串化后使用 ‘，’ 连接</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].toString(); <span class="comment">// 1,2,3,4,5</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="JSON-字符串化"><a href="#JSON-字符串化" class="headerlink" title="JSON 字符串化"></a><strong>JSON 字符串化</strong></h6><p>工具函数 <code>JSON.stringify</code> 在将 JSON 对象序列化为字符串时也用到了 ToString</p>
+<blockquote>
+<p>JSON 字符串化并非严格意义上的强制类型转换，因为其中也涉及 ToString 的相关规则</p>
+</blockquote>
+<p>对于大多数简单值来说，json字符串化效果与 <code>toString()</code> 相同</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify( <span class="number">42</span> ); <span class="comment">// "42"</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify( <span class="string">"42"</span> ); <span class="comment">// ""42""(含有双引号的字符串)</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify( <span class="literal">null</span> ); <span class="comment">// "null"</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify( <span class="literal">true</span> ); <span class="comment">// "true"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>所有安全的 JSON 值(JSON-safe)都可以使用 JSON.stringify(..) 字符串化</p>
+<p>安全的JSON值是指能够呈现为有效 JSON 格式的值</p>
+</blockquote>
+<p>为了简单，可以先看看不安全的 JSON 值是什么</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(<span class="literal">undefined</span>);</span><br><span class="line"><span class="comment">// function() &#123;&#125;</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;);</span><br><span class="line"><span class="comment">// symbol</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(<span class="built_in">Symbol</span>());</span><br><span class="line"></span><br><span class="line"><span class="built_in">JSON</span>.stringify([<span class="literal">undefined</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;, <span class="built_in">Symbol</span>()]); <span class="comment">// [null, null, null]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> c = &#123;&#125;;</span><br><span class="line">a.b = a;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(a); <span class="comment">// TypeError: Converting circular structure to JSON 循环引用</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(c); <span class="comment">// "&#123;&#125;"</span></span><br></pre></td></tr></table></figure>
+
+<p>如上代码</p>
+<p>当遇到 <code>undefined</code>、<code>function</code>、<code>symbol</code> 会被自动忽略；</p>
+<p>在数组中则会返回 <code>null</code> 以保证数组长度不变；</p>
+<p>对于循环引用，则会抛出错误；</p>
+<p>如果想要 非法的JSON值或是无法做序列化的值序列化，需要定义 <code>.toJSON</code> 方法，返回一个安全的JSON值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">  toJSON() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">123</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">a.b = a;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(a); <span class="comment">// "123"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">bar.toJSON = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'bar'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = &#123; <span class="attr">bar</span>: bar &#125;;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(b); <span class="comment">// "&#123;"bar":"bar"&#125;"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>JSON.stringify</code> 还有两个参数</p>
+<p>第二个是 <code>replacer</code>，表示哪些是要处理，哪些是不需要处理，可以是 <code>[Array | Function]</code></p>
+<p>第三个是 <code>space</code>，用于指定每一级的缩进</p>
+<h6 id="ToNumber"><a href="#ToNumber" class="headerlink" title="ToNumber"></a><strong>ToNumber</strong></h6><p>有时要将非数字类型的值当作数字使用，如数学计算；</p>
+<p>ECMA 也定义了 <code>ToNumber</code> 的抽象操作 <a href="chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=https%3A%2F%2Fwww.ecma-international.org%2Fwp-content%2Fuploads%2FECMA-262.pdf">ToNumber</a></p>
+<p>转换大致为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">undefined</span>;		<span class="comment">// NaN</span></span><br><span class="line"><span class="literal">null</span>;					<span class="comment">// +0</span></span><br><span class="line"><span class="literal">true</span>;					<span class="comment">// 1</span></span><br><span class="line"><span class="literal">false</span>;				<span class="comment">// +0</span></span><br><span class="line">string;				<span class="comment">// 会序列化为utf-16的字符串，如果该字符串不能转为 StringNumericLiteral，则返回 NaM，否则返回 数字类型</span></span><br><span class="line">symbol;				<span class="comment">// typeError</span></span><br><span class="line">bigInt;				<span class="comment">// typeError</span></span><br><span class="line">object;				<span class="comment">// 内部调用 ToPrimitive，简而言之就是将其转为基本类型值，会先调用 valueOf方法，没有就调用 toString方法来强制转换，如果 valueOf，									 toString均不返回基本类型值，报错（typeError）</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Object.create(null)</code> 由于原型指向 <code>null</code>，没有 <code>toString</code>，<code>valueOf</code> 方法，所以用它创建的对象强制类型转换会抛出 <code>typeError</code></p>
+<h6 id="ToBoolean"><a href="#ToBoolean" class="headerlink" title="ToBoolean"></a><strong>ToBoolean</strong></h6><p>Javascript 中有两个关键词 <code>true / false</code>，分别代表布尔类型的<strong>真 / 假</strong>；</p>
+<p>我们经常将数字 <code>1 / 0</code>  去对应 <code>true / false</code> 实际上它们并不是一回事，只是Javascript可以将 1 强制转换为 <code>true</code>，0 强制转换为 <code>false</code>；</p>
+<p>Javascript中的值分两类</p>
+<ul>
+<li>可以被强制类型转换为 <code>false</code> 的值</li>
+<li>其他（可以被强制转换为 <code>true</code> 的值）</li>
+</ul>
+<p>ECMA规范规定了 <code>toBoolean</code> 的转化规则，见 <a href="chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=https%3A%2F%2Fwww.ecma-international.org%2Fwp-content%2Fuploads%2FECMA-262.pdf">ECMA ToBoolean</a></p>
+<img src="/Users/xh/Library/Application Support/typora-user-images/image-20210518090830297.png" alt="image-20210518090830297" style="zoom:50%;" />
+
+<p><strong>假值对象</strong></p>
+<p>规范上面说了对象都会反映为真值，为何还有假值对象；</p>
+<p><code>new Boolean(false) ? new String(&#39;&#39;) ?</code> 这样的算假值对象？</p>
+<p>其实上面两个并非假值对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Sting(<span class="string">''</span>);</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (a &amp;&amp; b) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'c'</span>); <span class="comment">// c会被打印</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>假值对象实际并不属于Javascript语言范畴 ，浏览器在某些特定情况下，在常规JavaScript语法基础上自己创建了一些外来(exotic) 值，这些就是假值对象</strong></p>
+<p>假值对象看起来与Javascript普通对象没有区别，但是它们强制类型转换为 <code>boolean</code> 时为 <code>false</code>；</p>
+<blockquote>
+<p>常见例子为 <code>document.all</code>，它为一个数组对象，包含了页面上的所有元素，由DOM(而不是 JavaScript 引擎)提供给 JavaScript 程序使用</p>
+<p><code>document.all</code> 在之前为一个真正的对象，且强制转换布尔类型为 <code>true</code>，但 <code>document.all</code> 并非标准，随着浏览器标准推进而被废弃了，但是浏览器无法完全将它去除，于是将它以假值处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">if</span> (docuemnt.all) &#123;</span><br><span class="line"><span class="comment">// for IE</span></span><br><span class="line">&gt;&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">// for other browser</span></span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h6 id="显式强制类型转换"><a href="#显式强制类型转换" class="headerlink" title="显式强制类型转换"></a><strong>显式强制类型转换</strong></h6><p><strong>字符串和数字之间的显式转换</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 两者转换可以分别通过 String / Number 2个内建函数实现</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">'234'</span>;</span><br><span class="line"><span class="built_in">Number</span>(b); <span class="comment">// 234</span></span><br><span class="line"><span class="built_in">String</span>(a); <span class="comment">// '123'</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>String</code> 遵循之前 <code>toString</code> 规则，而 <code>Number</code> 则会 <code>toNumber</code> 规则；</p>
+<p>除了内置函数，还有如下转换方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">123</span>;</span><br><span class="line">a.toString(); <span class="comment">// '123'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="string">'234'</span>;</span><br><span class="line">+b; <span class="comment">// 234</span></span><br></pre></td></tr></table></figure>
+
+<p><code>toString</code> 方式还涉及到一次隐式转换，由于值为基础类型，无法调用 <code>toString</code> 方法，js会先将其转为封装对象；</p>
+<p><code>+</code> 为一元操作符，运算符会显示转为数字，而不是将其带入计算再转；</p>
+<p><strong>~符号</strong></p>
+<p><code>~</code> 运算符（字位操作“非”），字位运算符只适用于 32 位整数（通过抽象操作 <code>ToInt32</code> 来实现，<code>ToInt32</code> 会调用 <code>ToNumber</code> 强制类型转换）</p>
+<p>由于 <code>~</code> 只能用于 <code>number</code> 类型，返回值类型没发生变化，不存在被强制转换类型，但是某些特殊数字会产生转换效果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~<span class="number">-0</span>; <span class="comment">// -1</span></span><br><span class="line">~<span class="literal">NaN</span>; <span class="comment">// -1</span></span><br><span class="line">~<span class="literal">Infinity</span>; <span class="comment">// -1</span></span><br><span class="line">~-<span class="literal">Infinity</span>; <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
+
+<p><code>~</code> 首先将值强制类型转换为 32 位数字，然后执行字位操作“非”（对每一个字位进行反转）</p>
+<blockquote>
+<p>-1 是一个“哨位值”，哨位值是那些在各个类型中(这里是数字)被赋予了特殊含义的值。 在 C语言中我们用 -1 来代表函数执行失败，用大于等于 0 的值来代表函数执行成功</p>
+<p><code>~</code> 的一个合适的使用方式在于对 <code>indexOf</code> 未匹配到的情况专为 0 值，可以做 <code>boolean</code> 判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">var</span> a = <span class="string">'abcd'</span>;</span><br><span class="line">&gt;~a.indexOf(<span class="string">'c'</span>); <span class="comment">// -3</span></span><br><span class="line">&gt;~a.indexOf(<span class="string">'e'</span>); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h6 id="显式解析数字字符串"><a href="#显式解析数字字符串" class="headerlink" title="显式解析数字字符串"></a>显式解析数字字符串</h6><p>显示解析字符串与强制类型转换为数字，虽然返回的结果都是数字，但是<strong>解析</strong>和<strong>转换</strong>还是有所区别的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'42'</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">'42px'</span>;</span><br><span class="line"><span class="built_in">Number</span>(a); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">parseInt</span>(b); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'23xx32ac3'</span>); <span class="comment">// 23</span></span><br></pre></td></tr></table></figure>
+
+<p>解析允许字符串中还有非数字字符，<strong>解析会按照从左到右的顺序进行，遇到非数字字符停止</strong></p>
+<p>转换不允许还有任何非数字字符，否则返回 <code>NaN</code></p>
+<p><code>parseInt</code>，处理非字符类型的参数时会先强制转换为字符串，应该避免这样做，会产生奇怪的问题</p>
+<p>ES5之前 <code>parseInt</code> 存在一个坑，回根据第一个字符自动选择进制</p>
+<pre><code>- 如果第一位是 `0` -&gt; 转为八进制
+- 如果第一位是 `x` -&gt; 转为十六进制</code></pre><p>虽然ES5之后默认为十进制，但是 <code>js</code> 书写规范中仍然后一条 <code>parseInt</code> 必须传入第二个参数</p>
+<p>当然，关于 <code>parseInt</code> 还有一道著名的面试题：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].map(<span class="built_in">parseInt</span>); <span class="comment">// [1, NaN, NaN]</span></span><br></pre></td></tr></table></figure>
+
+<p>这道题跟第二个参数就有关系了</p>
+<pre><code>- 第二参数为 `0` -&gt; 按没有第二参数传入时逻辑
+- 第二参数为 `1` -&gt; 不能以1进制解析，返回 `NaN`
+- 第二参数为 `2` -&gt; 3不是有效的二进制数，返回 `NaN`</code></pre><p>关于第二参数，还会产生一些奇怪的结果，最常见的就是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">1</span>/<span class="number">0</span>, <span class="number">19</span>); <span class="comment">// 18</span></span><br></pre></td></tr></table></figure>
+
+<p>很让人摸不着头脑</p>
+<p>但是，还是能找到原因的，<code>parseInt</code> 第二参数范围为 <code>2 - 36</code>；</p>
+<ul>
+<li><p>1 / 0 会得到 <code>Infinity</code>，然后被强制转换为字符串 <code>&#39;Infinity&#39;</code>；</p>
+</li>
+<li><p>第二个参数为 <code>19</code>，意思为按19进制解析，对应如下表</p>
+<p>基数  ｜  进制</p>
+<p>  0             0</p>
+<p>  1           2</p>
+<p>  …          …</p>
+<p>  a           10</p>
+<p>  b           11</p>
+<p>  …          …</p>
+<p>   i           18</p>
+<p>  …          …</p>
+<p>  y           35</p>
+<p>  z           36</p>
+<p>进制到10以后对应的就是字母了，而 <code>Infinity</code> 的 <code>I</code> 刚好位于19进制上的最后一位，对应基数18，第二位字母 <code>n</code> 已经大于19进制了，无法识别了，解析完成，返回数字18</p>
+</li>
+</ul>
+<p>此特点还造就了如下特性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">0.000008</span>); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">0.0000008</span>); <span class="comment">// 8 -&gt; 被科学记数法 转为 8e-7 在被强制类型转换为 '8e-7'</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="literal">false</span>, <span class="number">16</span>); <span class="comment">// false 强制类型转换为 'false' 取 fa -&gt; 250</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="built_in">parseInt</span>, <span class="number">16</span>); <span class="comment">// parseInt 强制类型转换为 'function() parseInt() ...' 取 f -&gt; 15</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'103'</span>, <span class="number">2</span>); <span class="comment">// 2 取值到10，舍弃3（三不是有效的二进制数）</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="符号的强制类型转换"><a href="#符号的强制类型转换" class="headerlink" title="符号的强制类型转换"></a>符号的强制类型转换</h6><p>符号(<code>symbol</code>)无法被强制转换为数字类型(无论显式还是隐式)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">Symbol</span>(<span class="string">'a'</span>);</span><br><span class="line"><span class="built_in">Number</span>(a); <span class="comment">// TypeError</span></span><br><span class="line">a + <span class="number">1</span>; <span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
+
+<p> ES6允许符号到字符串的显式转换，但是不允许隐式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">Symbol</span>(<span class="string">'a'</span>);</span><br><span class="line"><span class="built_in">String</span>(a); <span class="comment">// Symbol(a)</span></span><br><span class="line">a + <span class="number">1</span>; <span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
+
+<p>符号可以被强制转换为布尔值，但是结果始终为 <code>true</code></p>
+<h6 id="宽松相等（-）和-严格相等（-）"><a href="#宽松相等（-）和-严格相等（-）" class="headerlink" title="宽松相等（==）和 严格相等（===）"></a>宽松相等（==）和 严格相等（===）</h6><p><code>==</code> 和 <code>===</code> 都是用来判断两个值是否 “相等”，但是它们之间有一些区别，尤其是在判断条件上；</p>
+<blockquote>
+<p>:x: 有一个误区是：<code>==</code> 检查值是否相等，<code>===</code> 检查值和类型是否相等</p>
+</blockquote>
+<p>:white_check_mark: 正确的解释是：<strong><code>==</code> 允许在相等比较中强制类型转换，而 <code>===</code> 不允许</strong></p>
+<blockquote>
+<p>对于以上错误的解释，<code>===</code> 会多一步骤，二正确的解释 <code>==</code> 会多一个步骤，但是不论何种，对于性能的影响微乎其微；</p>
+<p><code>==</code> 和 <code>===</code> 都会检查操作数的类型，区别在对其处理方式不同；</p>
+</blockquote>
+<p>ES5的 11.9.3 “抽象相等比较法”（ES2020 在 <a href="chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=https%3A%2F%2Fwww.ecma-international.org%2Fwp-content%2Fuploads%2FECMA-262.pdf">7.2.15</a>） 定义了 <code>==</code> 运算符的行为</p>
+<img src="/Users/xh/Library/Application Support/typora-user-images/image-20210623091336206.png" alt="image-20210623091336206" style="zoom:50%;" />
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// !表示强制</span></span><br><span class="line"><span class="number">1.</span> type(x) == type(y) -&gt; x === y;</span><br><span class="line"><span class="number">2.</span> x(<span class="literal">null</span>/<span class="literal">undefined</span>) == y(<span class="literal">null</span>/<span class="literal">undefined</span>) -&gt; <span class="literal">true</span>; <span class="comment">// (x = null / y = undefined) 也会得到 true</span></span><br><span class="line"><span class="number">3.</span> type(x)[<span class="built_in">Number</span>] == type(y)[<span class="built_in">String</span>] -&gt; x == !ToNumber(y); <span class="comment">// 发生强制类型转换 string -&gt; number</span></span><br><span class="line"><span class="number">4.</span> type(x)[<span class="built_in">String</span>] == type(y)[<span class="built_in">Number</span>] -&gt; !ToNumber(x) == y; <span class="comment">// 发生强制类型转换 string -&gt; number</span></span><br><span class="line"><span class="number">5.</span> type(x)[BigInt] == type(y)[<span class="built_in">String</span>]	<span class="comment">// 发生强制类型转换 string -&gt; bigInt</span></span><br><span class="line">			n = !StringToBigInt(y)</span><br><span class="line">			<span class="keyword">if</span> (n is <span class="literal">NaN</span>) -&gt; <span class="literal">false</span></span><br><span class="line">			<span class="keyword">else</span> x == n</span><br><span class="line"><span class="number">6.</span> type(x)[<span class="built_in">String</span>] == type(y)[BigInt] -&gt; type(y) == type(x); <span class="comment">// 翻转，走步骤5</span></span><br><span class="line"><span class="number">7.</span> type(x)[<span class="built_in">Boolean</span>] -&gt; !ToNumber(x) == y; <span class="comment">// 发生强制类型转换 boolean -&gt; number</span></span><br><span class="line"><span class="number">8.</span> type(x)[<span class="built_in">Boolean</span>] -&gt; x == !ToNumber(y); <span class="comment">// 发生强制类型转换 boolean -&gt; number</span></span><br><span class="line"><span class="number">9.</span> type(x)[<span class="built_in">String</span>/<span class="built_in">Number</span>/BigInt/<span class="built_in">Symbol</span>] == type(y)[<span class="built_in">Object</span>] <span class="comment">// 发生强制类型转换 Object -&gt; (valueOf / toString)</span></span><br><span class="line">			x == ToPrimitive(y) -&gt; (valueOf / toString)</span><br><span class="line"><span class="number">10.</span> type(x)[<span class="built_in">Object</span>] == type(y)[<span class="built_in">String</span>/<span class="built_in">Number</span>/BigInt/<span class="built_in">Symbol</span>] <span class="comment">// 发生强制类型转换 Object -&gt; (valueOf / toString)</span></span><br><span class="line">			ToPrimitive(x) == y -&gt; (valueOf / toString)</span><br><span class="line"><span class="number">11.</span> type(x)[<span class="built_in">Number</span>/BigInt] == type(y)[BigInt/<span class="built_in">Number</span>]</span><br><span class="line">			x or y == <span class="literal">NaN</span> || <span class="literal">Infinity</span> || -<span class="literal">Infinity</span> -&gt; <span class="literal">false</span></span><br><span class="line">			数学值(x) == 数学值(y)</span><br><span class="line"><span class="number">12.</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>对于 <code>===</code> (ES2020 在 <a href="chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=https%3A%2F%2Fwww.ecma-international.org%2Fwp-content%2Fuploads%2FECMA-262.pdf">7.2.16</a>) 中定义了其行为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type(x) !== type(y) -&gt; <span class="literal">false</span></span><br><span class="line">type(x)[<span class="built_in">Number</span>/BigInt] -&gt; <span class="comment">// 进行数值比较</span></span><br><span class="line">SameValueNonNumeric(x, y) -&gt; <span class="comment">// 同值非数值比较</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="抽象关系比较"><a href="#抽象关系比较" class="headerlink" title="抽象关系比较"></a>抽象关系比较</h6><p>对于 <code>a &lt; b</code> 也会有些奇怪的地方</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">4</span>];</span><br><span class="line"><span class="keyword">var</span> b = [<span class="number">5</span>];</span><br><span class="line">a &lt; b; <span class="comment">// true</span></span><br><span class="line">b &lt; a; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>对于对象，首相会是调用 <code>ToPrimitive</code>，如果出现了非字符串，就会尝试使用 <code>ToNumber</code> 强转数字；</p>
+<p>但是如果是以下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">'4'</span>];</span><br><span class="line"><span class="keyword">var</span> b = [<span class="string">'05'</span>];</span><br><span class="line">a &lt; b; <span class="comment">// false</span></span><br><span class="line">b &lt; a; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>以上调用 <code>ToPrimitive</code> 后已经是字符串了，进行的是字符串比较，<code>0</code> 自然小于 <code>4</code>；</p>
+<p>同理对于以下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">4</span>, <span class="number">1</span>];</span><br><span class="line"><span class="keyword">var</span> b = [<span class="number">0</span>, <span class="number">9</span>, <span class="number">1</span>];</span><br><span class="line">a &lt; b; <span class="comment">// false "4,1" &lt; "0,9,1"</span></span><br><span class="line">b &lt; a; <span class="comment">// true  "0,9,1" &lt; "4,1"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>对于以下会有更奇怪的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">b</span>: <span class="number">42</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> b = &#123; <span class="attr">b</span>: <span class="number">43</span> &#125;;</span><br><span class="line">a &lt; b;  <span class="comment">// false</span></span><br><span class="line">a == b; <span class="comment">// false</span></span><br><span class="line">a &gt; b;  <span class="comment">// false</span></span><br><span class="line">a &lt;= b; <span class="comment">// true</span></span><br><span class="line">a &gt;= b; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>为什么在使用 <code>&gt;=</code>，<code>&lt;=</code> 会是 <code>true</code> 呢？</p>
+<p>由于 javascript 中并没有 <code>&gt;= / &lt; =</code>，会转为 <code>a &lt;= b -&gt; !(b &lt; a)</code> 这种，由于 <code>b &lt; a = false</code>，加上 <code>!</code> 非判断后就为 <code>true</code> 了；</p>
+<p>对于 <code>a == b</code> 为什么不为 <code>true</code> 暂时不知道原因_（不知道为什么不是 <code>[object Object] == [object Object]</code>）_；</p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">星河</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#强制类型转换"><span class="nav-text">强制类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#抽象值操作（仅供内部使用的操作？）"><span class="nav-text">抽象值操作（仅供内部使用的操作？）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ToString"><span class="nav-text">ToString</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#JSON-字符串化"><span class="nav-text">JSON 字符串化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ToNumber"><span class="nav-text">ToNumber</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ToBoolean"><span class="nav-text">ToBoolean</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#显式强制类型转换"><span class="nav-text">显式强制类型转换</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#显式解析数字字符串"><span class="nav-text">显式解析数字字符串</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#符号的强制类型转换"><span class="nav-text">符号的强制类型转换</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#宽松相等（-）和-严格相等（-）"><span class="nav-text">宽松相等（&#x3D;&#x3D;）和 严格相等（&#x3D;&#x3D;&#x3D;）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#抽象关系比较"><span class="nav-text">抽象关系比较</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">星河</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
